@@ -36,5 +36,6 @@ dependencies {
 ## 📚 Documentation
 See the Wiki for full usage instructions.
 
-##📝 License
+
+## 📝 License
 This project is licensed under the MIT License.
