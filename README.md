@@ -35,4 +35,4 @@ dependencies {
 ```
 
 ## 📚 Documentation
-See the Wiki for full usage instructions.
+See the [Wiki](https://github.com/iMeeTake/TAPI/wiki) for full usage instructions.
