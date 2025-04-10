@@ -3,15 +3,15 @@
 	"id": "tapi",
 	"version": "${version}",
 	"name": "TAPI",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Take's API",
 	"authors": [
-		"Me!"
+		"iMeeTake"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/tapi",
+		"sources": "https://github.com/iMeeTake/TAPI"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/tapi/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -31,7 +31,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.13",
-		"minecraft": "~1.21.1",
+		"minecraft": "1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

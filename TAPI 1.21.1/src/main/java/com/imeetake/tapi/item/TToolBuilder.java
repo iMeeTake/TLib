@@ -1,11 +1,7 @@
 package com.imeetake.tapi.item;
 
 import com.imeetake.tapi.registry.TRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.item.*;
 
 public class TToolBuilder {
     private final String id;
@@ -59,24 +55,35 @@ public class TToolBuilder {
         return this;
     }
 
-    public Item build() {
-        Identifier identifier = TRegistry.getItemId(id);
 
-        // Применяем тип инструмента
+    public Item build() {
         switch (type) {
-            case PICKAXE -> settings.pickaxe(material, damage, attackSpeed);
-            case AXE -> settings.axe(material, damage, attackSpeed);
-            case SHOVEL -> settings.shovel(material, damage, attackSpeed);
-            case HOE -> settings.hoe(material, damage, attackSpeed);
+            case PICKAXE -> {
+                settings.attributeModifiers(PickaxeItem.createAttributeModifiers(material, damage, attackSpeed));
+                PickaxeItem item = new PickaxeItem(material, settings);
+                TRegistry.registerItem(id, item);
+                return item;
+            }
+            case AXE -> {
+                settings.attributeModifiers(AxeItem.createAttributeModifiers(material, damage, attackSpeed));
+                AxeItem item = new AxeItem(material, settings);
+                TRegistry.registerItem(id, item);
+                return item;
+            }
+            case SHOVEL -> {
+                settings.attributeModifiers(ShovelItem.createAttributeModifiers(material, damage, attackSpeed));
+                ShovelItem item = new ShovelItem(material, settings);
+                TRegistry.registerItem(id, item);
+                return item;
+            }
+            case HOE -> {
+                settings.attributeModifiers(HoeItem.createAttributeModifiers(material, damage, attackSpeed));
+                HoeItem item = new HoeItem(material, settings);
+                TRegistry.registerItem(id, item);
+                return item;
+            }
             default -> throw new IllegalStateException("Unknown tool type: " + type);
         }
-
-        // Устанавливаем registryKey перед созданием предмета
-        settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, identifier));
-
-        // Создаём предмет и регистрируем его
-        Item item = new Item(settings);
-        return TRegistry.registerItem(id, item);
     }
 
     private enum ToolType {

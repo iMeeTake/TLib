@@ -8,8 +8,8 @@
 		"iMeeTake"
 	],
 	"contact": {
-		"homepage": "https://www.curseforge.com/minecraft/mc-mods/tapi",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/tapi",
+		"sources": "https://github.com/iMeeTake/TAPI"
 	},
 	"license": "MIT",
 	"icon": "assets/tapi/icon.png",
