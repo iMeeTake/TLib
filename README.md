@@ -1,7 +1,8 @@
 # TAPI – Take's API
 
 **TAPI (Take's API)** is a lightweight, developer-friendly library for Minecraft Fabric mods (1.21.1+).  
-It provides easy builders and utilities for registering items, tools, weapons, and item groups.
+It provides easy builders and utilities for registering items, tools, weapons, and item groups. 
+I have a lot of plans for its future development, so the features listed above are not all!
 
 ---
 
