@@ -24,13 +24,16 @@ I have a lot of plans for its future development, so the features listed above a
 
 Add the Modrinth Maven to your `repositories`:
 
-```groovy
+```gradle
 repositories {
-    maven { url = "https://api.modrinth.com/maven" }
+	maven {
+		name = "iMeeTake GitHub Maven"
+		url = "https://raw.githubusercontent.com/iMeeTake/tapi-maven/main/"
+	}
 }
 
 dependencies {
-    modImplementation("maven.modrinth:tapi:version")
+    modImplementation("com.imeetake:tapi:version") // version = 1.0.0-1.21.1, 1.2.3-1.21.5 etc.
 }
 ```
 
