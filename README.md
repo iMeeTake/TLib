@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    modImplementation("maven.modrinth:tapi:1.0.0")
+    modImplementation("maven.modrinth:tapi:version")
 }
 ```
 
