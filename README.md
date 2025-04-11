@@ -14,7 +14,7 @@ I have a lot of plans for its future development, so the features listed above a
   - Weapons (swords)
   - Creative item groups (tabs)
 - 🔄 Unified registration through `TRegistry`
-- 🧩 Supports both Minecraft 1.21.1 and 1.21.5
+- 🧩 Supports both Minecraft 1.21.1+
 - 🧠 Consistent usage across versions
 - 🔁 Works with static final fields — no need to call init methods manually
 
