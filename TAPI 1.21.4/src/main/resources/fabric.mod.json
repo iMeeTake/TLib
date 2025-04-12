@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "tapi",
+	"version": "${version}",
+	"name": "TAPI",
+	"description": "Take's API",
+	"authors": [
+		"iMeeTake"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/takesapi",
+		"sources": "https://github.com/iMeeTake/TAPI"
+	},
+	"license": "MIT",
+	"icon": "assets/tapi/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.imeetake.tapi.TAPI"
+		],
+		"client": [
+			"com.imeetake.tapi.TAPIClient"
+		]
+	},
+	"mixins": [
+		"tapi.mixins.json",
+		{
+			"config": "tapi.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
