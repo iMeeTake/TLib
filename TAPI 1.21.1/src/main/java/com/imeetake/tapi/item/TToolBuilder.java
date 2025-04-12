@@ -1,7 +1,9 @@
 package com.imeetake.tapi.item;
 
+import com.imeetake.tapi.TContext;
 import com.imeetake.tapi.registry.TRegistry;
 import net.minecraft.item.*;
+import net.minecraft.util.Identifier;
 
 public class TToolBuilder {
     private final String id;
@@ -57,6 +59,9 @@ public class TToolBuilder {
 
 
     public Item build() {
+        String modId = TContext.getModId();
+        Identifier fullId = Identifier.of(modId, id);
+
         switch (type) {
             case PICKAXE -> {
                 settings.attributeModifiers(PickaxeItem.createAttributeModifiers(material, damage, attackSpeed));

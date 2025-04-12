@@ -1,5 +1,6 @@
 package com.imeetake.tapi.item;
 
+import com.imeetake.tapi.TContext;
 import com.imeetake.tapi.registry.TRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
@@ -45,15 +46,15 @@ public class TWeaponBuilder {
     }
 
     public Item build() {
-        // Получаем полный ID с учётом modId
-        Identifier identifier = TRegistry.getItemId(id);
+        String modId = TContext.getModId();
+        Identifier identifier = Identifier.of(modId, this.id);
 
         // Устанавливаем характеристики оружия и обязательно registryKey ДО создания предмета
         settings
                 .sword(material, damage, attackSpeed)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, identifier));
 
-        // Создаём и регистрируем предмет
+
         Item item = new Item(settings);
         return TRegistry.registerItem(id, item);
     }

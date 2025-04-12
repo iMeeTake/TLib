@@ -1,5 +1,6 @@
 package com.imeetake.tapi.item;
 
+import com.imeetake.tapi.TContext;
 import com.imeetake.tapi.registry.TRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
@@ -60,7 +61,8 @@ public class TToolBuilder {
     }
 
     public Item build() {
-        Identifier identifier = TRegistry.getItemId(id);
+        String modId = TContext.getModId();
+        Identifier identifier = Identifier.of(modId, this.id);
 
         // Применяем тип инструмента
         switch (type) {

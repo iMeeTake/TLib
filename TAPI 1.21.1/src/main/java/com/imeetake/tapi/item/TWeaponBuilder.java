@@ -1,7 +1,9 @@
 package com.imeetake.tapi.item;
 
+import com.imeetake.tapi.TContext;
 import com.imeetake.tapi.registry.TRegistry;
 import net.minecraft.item.*;
+import net.minecraft.util.Identifier;
 
 public class TWeaponBuilder {
     private final String id;
@@ -43,6 +45,8 @@ public class TWeaponBuilder {
 
 
     public SwordItem build() {
+        String modId = TContext.getModId();
+        Identifier fullId = Identifier.of(modId, id);
         settings.attributeModifiers(SwordItem.createAttributeModifiers(material, damage, attackSpeed));
         SwordItem item = new SwordItem(material, settings);
         TRegistry.registerItem(id, item);

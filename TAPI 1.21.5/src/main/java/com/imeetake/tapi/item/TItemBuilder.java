@@ -1,5 +1,6 @@
 package com.imeetake.tapi.item;
 
+import com.imeetake.tapi.TContext;
 import com.imeetake.tapi.registry.TRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
@@ -30,10 +31,11 @@ public class TItemBuilder {
     }
 
     public Item build() {
-        Identifier fullId = TRegistry.getItemId(this.id);
+        String modId = TContext.getModId();
+        Identifier identifier = Identifier.of(modId, this.id);
 
         // Новый важный шаг — установка ключа регистрации
-        settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, fullId));
+        settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, identifier));
 
         Item item = new Item(settings);
         return TRegistry.registerItem(this.id, item);
