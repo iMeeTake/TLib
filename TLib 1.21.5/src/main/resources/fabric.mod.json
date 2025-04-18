@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "tlib",
+	"version": "${version}",
+	"name": "TLib",
+	"description": "Take's Lib",
+	"authors": [
+		"iMeeTake"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/tlib",
+		"sources": "https://github.com/iMeeTake/TLib"
+	},
+	"license": "MIT",
+	"icon": "assets/tlib/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.imeetake.tlib.TLib"
+		],
+		"client": [
+			"com.imeetake.tlib.TLibClient"
+		]
+	},
+	"mixins": [
+		"tlib.mixins.json",
+		{
+			"config": "tlib.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
