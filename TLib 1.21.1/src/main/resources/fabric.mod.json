@@ -8,7 +8,7 @@
 		"iMeeTake"
 	],
 	"contact": {
-		"homepage": "https://modrinth.com/project/tlib",
+		"homepage": "https://modrinth.com/mod/tlib",
 		"sources": "https://github.com/iMeeTake/TLib"
 	},
 	"license": "MIT",
@@ -20,8 +20,12 @@
 		],
 		"client": [
 			"com.imeetake.tlib.TLibClient"
+		],
+		"modmenu": [
+			"com.imeetake.tlib.config.integration.TLibModMenuIntegration"
 		]
 	},
+
 	"mixins": [
 		"tlib.mixins.json",
 		{
@@ -36,6 +40,7 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"another-mod": "*",
+		"modmenu": "*"
 	}
 }

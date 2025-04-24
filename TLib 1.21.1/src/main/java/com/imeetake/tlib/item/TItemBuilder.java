@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 public class TItemBuilder {
     private final String id;
     private final Item.Settings settings;
+    
 
     private TItemBuilder(String id) {
         this.id = id;
