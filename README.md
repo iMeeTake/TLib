@@ -1,8 +1,9 @@
 # TLib – Take's Lib
 
-**TLib (Take's Lib)** is a lightweight, developer-friendly library for Minecraft Fabric mods (1.21.1+).  
-It provides easy builders and utilities for registering items, tools, weapons, and item groups. 
-I have a lot of plans for its future development, so the features listed above are not all!
+**TLib (Take's Lib)** is a modular and developer-friendly library for Minecraft Fabric mods (1.21.1+).  
+It provides not only fluent builders for items and tools, but also a growing collection of powerful utilities for client-side rendering, sound management, world interaction, and more.
+
+Whether you're creating survival mechanics, atmosphere-driven features, or just registering your items faster — TLib is built to simplify and enhance your development workflow.
 
 ---
 
@@ -13,16 +14,20 @@ I have a lot of plans for its future development, so the features listed above a
   - Tools (pickaxe, axe, shovel, hoe)
   - Weapons (swords)
   - Creative item groups (tabs)
-- 🔄 Unified registration through `TRegistry`
-- 🧩 Supports both Minecraft 1.21.1+
-- 🧠 Consistent usage across versions
-- 🔁 Works with static final fields — no need to call init methods manually
+- 🎮 Client-side utilities:
+  - Access to world weather, time, biome and sky visibility (`TClientEnvironment`)
+  - Manage one-shot and looped sounds (`TClientSoundManager`)
+  - Work with camera position, view direction, FOV, and HUD visibility (`TClientRenderUtils`)
+- 🔄 Unified registration with `TRegistry`
+- ⚙️ Minimal setup — no need to call init methods manually
+- 🧩 Designed for Minecraft 1.21.1 and above
+- 🔁 Backward-compatible and version-stable APIs
 
 ---
 
-## 📦 Gradle Setup (Modrinth Maven)
+## 📦 Gradle Setup (GitHub Maven)
 
-Add the Modrinth Maven to your `repositories`:
+Add the Maven repository to your `repositories` block:
 
 ```gradle
 repositories {
@@ -35,7 +40,3 @@ repositories {
 dependencies {
     modImplementation("com.imeetake:tlib:version") // version = 1.0.0-1.21.1, 1.2.3-1.21.5 etc.
 }
-```
-
-## 📚 Documentation
-See the [Wiki](https://github.com/iMeeTake/TLib/wiki) for full usage instructions.
