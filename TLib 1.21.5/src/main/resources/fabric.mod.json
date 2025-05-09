@@ -3,7 +3,7 @@
 	"id": "tlib",
 	"version": "${version}",
 	"name": "TLib",
-	"description": "Take's Lib",
+	"description": "Library for Take's mods",
 	"authors": [
 		"iMeeTake"
 	],
