@@ -62,8 +62,6 @@ public class TParticleEmitter {
     }
 
     /**
-     * Спавнит {@code count} частиц внутри AABB (Box).
-     *
      * @param effect эффект частицы
      * @param box    область AABB
      * @param count  количество частиц
