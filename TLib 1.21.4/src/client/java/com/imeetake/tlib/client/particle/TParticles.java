@@ -13,12 +13,16 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 /**
- * Утилита для регистрации частиц и их фабрик.
+ * Utility class for registering particle types and factories.
  */
 public class TParticles {
 
     /**
-     * Регистрирует ParticleType без параметров.
+     * Registers a simple, stateless particle type under the given mod ID and name.
+     *
+     * @param modId the mod identifier (namespace)
+     * @param name  the particle name (path)
+     * @return the registered ParticleType
      */
     public static ParticleType<?> simple(String modId, String name) {
         ParticleType<?> type = FabricParticleTypes.simple();
@@ -27,14 +31,22 @@ public class TParticles {
     }
 
     /**
-     * Регистрирует фабрику, используя обычную реализацию (если своя фабрика).
+     * Registers a particle factory using a provided factory function and sprite provider.
+     *
+     * @param type            the particle type
+     * @param factoryFunction a function that returns a factory given a sprite provider
+     * @param <T>             the particle effect type
      */
     public static <T extends ParticleEffect> void register(ParticleType<T> type, Function<SpriteProvider, ParticleFactory<T>> factoryFunction) {
         ParticleFactoryRegistry.getInstance().register(type, factoryFunction::apply);
     }
 
     /**
-     * Регистрирует простую фабрику на основе конструктора частицы.
+     * Registers a simple particle factory using a custom creation method.
+     *
+     * @param type    the particle type
+     * @param creator a lambda or method reference to create the particle
+     * @param <T>     the particle effect type
      */
     public static <T extends ParticleEffect> void registerSimple(
             ParticleType<T> type,

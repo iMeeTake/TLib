@@ -6,26 +6,28 @@ import net.minecraft.util.math.Box;
 import java.util.Random;
 
 /**
- * Утилиты для массового спавна частиц по шаблонам (сфера, куб, AABB).
+ * Utility class for mass particle emission in different shapes
+ * such as spheres, cubes, and AABBs.
  */
 public class TParticleEmitter {
+
     private static final Random RANDOM = new Random();
 
     /**
-     * Спавнит {@code count} частиц с эффектом {@code effect} внутри сферы.
+     * Spawns {@code count} particles randomly distributed inside a sphere.
      *
-     * @param effect эффект частицы
-     * @param cx     X-координата центра
-     * @param cy     Y-координата центра
-     * @param cz     Z-координата центра
-     * @param radius радиус сферы
-     * @param count  количество частиц
+     * @param effect the particle effect to spawn
+     * @param cx     center X coordinate
+     * @param cy     center Y coordinate
+     * @param cz     center Z coordinate
+     * @param radius radius of the sphere
+     * @param count  number of particles to spawn
      */
     public static void sphere(ParticleEffect effect, double cx, double cy, double cz, double radius, int count) {
         for (int i = 0; i < count; i++) {
             double costheta = 2 * RANDOM.nextDouble() - 1;
-            double phi     = 2 * Math.PI * RANDOM.nextDouble();
-            double r       = radius * Math.cbrt(RANDOM.nextDouble());
+            double phi = 2 * Math.PI * RANDOM.nextDouble();
+            double r = radius * Math.cbrt(RANDOM.nextDouble()); // uniform distribution inside volume
             double sinTheta = Math.sqrt(1 - costheta * costheta);
 
             double x = cx + r * sinTheta * Math.cos(phi);
@@ -37,16 +39,17 @@ public class TParticleEmitter {
     }
 
     /**
-     * Спавнит {@code count} частиц в пределах куба [minX…maxX]×[minY…maxY]×[minZ…maxZ].
+     * Spawns {@code count} particles randomly distributed inside a cube
+     * defined by the given bounding coordinates.
      *
-     * @param effect эффект частицы
-     * @param minX   минимальный X
-     * @param minY   минимальный Y
-     * @param minZ   минимальный Z
-     * @param maxX   максимальный X
-     * @param maxY   максимальный Y
-     * @param maxZ   максимальный Z
-     * @param count  количество частиц
+     * @param effect the particle effect to spawn
+     * @param minX   minimum X coordinate
+     * @param minY   minimum Y coordinate
+     * @param minZ   minimum Z coordinate
+     * @param maxX   maximum X coordinate
+     * @param maxY   maximum Y coordinate
+     * @param maxZ   maximum Z coordinate
+     * @param count  number of particles to spawn
      */
     public static void cube(ParticleEffect effect,
                             double minX, double minY, double minZ,
@@ -62,9 +65,11 @@ public class TParticleEmitter {
     }
 
     /**
-     * @param effect эффект частицы
-     * @param box    область AABB
-     * @param count  количество частиц
+     * Spawns {@code count} particles randomly inside a given AABB (axis-aligned bounding box).
+     *
+     * @param effect the particle effect to spawn
+     * @param box    the bounding box to fill with particles
+     * @param count  number of particles to spawn
      */
     public static void aabb(ParticleEffect effect, Box box, int count) {
         cube(effect,

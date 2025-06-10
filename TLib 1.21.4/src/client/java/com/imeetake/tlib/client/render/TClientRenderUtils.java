@@ -8,55 +8,74 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.util.math.Vec3d;
 
 /**
- * Утилита для получения информации о клиентском рендеринге:
- * камера, направление взгляда, режим от первого/третьего лица, состояние HUD и экрана.
+ * Utility class for accessing client rendering state such as camera,
+ * perspective, HUD visibility, and screen status.
  */
 @Environment(EnvType.CLIENT)
 public class TClientRenderUtils {
 
-    // Возвращает текущую игровую камеру клиента.
+    /**
+     * Returns the current active game camera.
+     */
     public static Camera getCamera() {
         return MinecraftClient.getInstance().gameRenderer.getCamera();
     }
 
-    // Возвращает позицию камеры в мире. Может отличаться от позиции игрока.
+    /**
+     * Returns the world position of the camera.
+     * May differ from the player's position.
+     */
     public static Vec3d getCameraPosition() {
         Camera camera = getCamera();
         return camera.getPos();
     }
 
-    // Возвращает вектор направления взгляда камеры.
+    /**
+     * Returns the direction vector the camera is facing.
+     */
     public static Vec3d getCameraLookVector() {
         Camera camera = getCamera();
         return Vec3d.fromPolar(camera.getPitch(), camera.getYaw());
     }
 
-    // Проверяет, включён ли режим от первого лица.
+    /**
+     * Returns true if the camera is in first-person view.
+     */
     public static boolean isFirstPerson() {
         return MinecraftClient.getInstance().options.getPerspective() == Perspective.FIRST_PERSON;
     }
 
-    // Проверяет, включён ли режим от третьего лица (вид сзади).
+    /**
+     * Returns true if the camera is in third-person back view.
+     */
     public static boolean isThirdPersonBack() {
         return MinecraftClient.getInstance().options.getPerspective() == Perspective.THIRD_PERSON_BACK;
     }
 
-    // Проверяет, включён ли режим от третьего лица (вид спереди).
+    /**
+     * Returns true if the camera is in third-person front (selfie) view.
+     */
     public static boolean isThirdPersonFront() {
         return MinecraftClient.getInstance().options.getPerspective() == Perspective.THIRD_PERSON_FRONT;
     }
 
-    // Проверяет, отображается ли HUD.
+    /**
+     * Returns true if the HUD is currently visible.
+     */
     public static boolean isHudVisible() {
         return !MinecraftClient.getInstance().options.hudHidden;
     }
 
-    // Проверяет, открыт ли сейчас экран (инвентарь, меню, чат и т.п.).
+    /**
+     * Returns true if any GUI screen is currently open (e.g., inventory, chat).
+     */
     public static boolean isInGUI() {
         return MinecraftClient.getInstance().currentScreen != null;
     }
 
-    // Возвращает текущий угол обзора (FOV), установленный в настройках игрока.
+    /**
+     * Returns the current field of view (FOV) from settings.
+     */
     public static double getFov() {
         return MinecraftClient.getInstance().options.getFov().getValue();
     }

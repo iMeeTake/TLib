@@ -1,4 +1,4 @@
-package com.imeetake.tlib.client;
+package com.imeetake.tlib.client.core;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,35 +10,48 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 
 /**
- * Утилита для получения информации о погоде, времени суток и биоме на клиентской стороне.
+ * Utility class for accessing client-side environment data:
+ * weather, time of day, biome, and sky visibility.
  */
 @Environment(EnvType.CLIENT)
 public class TClientEnvironment {
 
-    // Возвращает текущий клиентский мир
+    /**
+     * Returns the current client world.
+     */
     public static ClientWorld getWorld() {
         return MinecraftClient.getInstance().world;
     }
 
-    // Проверяет, идёт ли дождь
+    /**
+     * Returns true if it is currently raining.
+     */
     public static boolean isRaining() {
         ClientWorld world = getWorld();
         return world != null && world.isRaining();
     }
 
-    // Проверяет, идёт ли гроза
+    /**
+     * Returns true if it is currently thundering.
+     */
     public static boolean isThundering() {
         ClientWorld world = getWorld();
         return world != null && world.isThundering();
     }
 
-    // Возвращает силу дождя (от 0 до 1)
+    /**
+     * Returns the current rain strength (from 0 to 1).
+     *
+     * @param tickDelta partial tick time
+     */
     public static float getRainStrength(float tickDelta) {
         ClientWorld world = getWorld();
         return world != null ? world.getRainGradient(tickDelta) : 0.0f;
     }
 
-    // Возвращает текущий биом, в котором находится игрок
+    /**
+     * Returns the biome the player is currently in.
+     */
     public static RegistryEntry<Biome> getCurrentBiome() {
         ClientWorld world = getWorld();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
@@ -50,7 +63,9 @@ public class TClientEnvironment {
         return null;
     }
 
-    // Проверяет, находится ли игрок под открытым небом
+    /**
+     * Checks if the player is under open sky (not covered).
+     */
     public static boolean isInOpenSky() {
         ClientWorld world = getWorld();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
@@ -62,7 +77,9 @@ public class TClientEnvironment {
         return false;
     }
 
-    // Проверяет, является ли текущее время ночью
+    /**
+     * Returns true if the current time is considered nighttime.
+     */
     public static boolean isNight() {
         ClientWorld world = getWorld();
 

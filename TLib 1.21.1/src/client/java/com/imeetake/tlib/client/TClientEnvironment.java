@@ -10,35 +10,56 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 
 /**
- * Утилита для получения информации о погоде, времени суток и биоме на клиентской стороне.
+ * Utility class for accessing weather, time, and biome information on the client side.
  */
 @Environment(EnvType.CLIENT)
 public class TClientEnvironment {
 
-    // Возвращает текущий клиентский мир
+    /**
+     * Returns the current client world instance.
+     *
+     * @return the {@link ClientWorld} or null, если мир ещё не загружен
+     */
     public static ClientWorld getWorld() {
         return MinecraftClient.getInstance().world;
     }
 
-    // Проверяет, идёт ли дождь
+    /**
+     * Returns true if it is currently raining in the world.
+     *
+     * @return true, если идёт дождь
+     */
     public static boolean isRaining() {
         ClientWorld world = getWorld();
         return world != null && world.isRaining();
     }
 
-    // Проверяет, идёт ли гроза
+    /**
+     * Returns true if a thunderstorm is currently active.
+     *
+     * @return true, если сейчас гроза
+     */
     public static boolean isThundering() {
         ClientWorld world = getWorld();
         return world != null && world.isThundering();
     }
 
-    // Возвращает силу дождя (от 0 до 1)
+    /**
+     * Returns the current rain intensity (from 0.0 to 1.0).
+     *
+     * @param tickDelta partial ticks для сглаживания
+     * @return уровень дождя, или 0.0f, если мир не загружен
+     */
     public static float getRainStrength(float tickDelta) {
         ClientWorld world = getWorld();
         return world != null ? world.getRainGradient(tickDelta) : 0.0f;
     }
 
-    // Возвращает текущий биом, в котором находится игрок
+    /**
+     * Returns the biome at the player's current position.
+     *
+     * @return запись биома под игроком, или null, если мир/игрок не готовы
+     */
     public static RegistryEntry<Biome> getCurrentBiome() {
         ClientWorld world = getWorld();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
@@ -46,11 +67,14 @@ public class TClientEnvironment {
         if (world != null && player != null) {
             return world.getBiome(player.getBlockPos());
         }
-
         return null;
     }
 
-    // Проверяет, находится ли игрок под открытым небом
+    /**
+     * Returns true if the player is under open sky.
+     *
+     * @return true, если над игроком нет тёмного потолка (не в пещере)
+     */
     public static boolean isInOpenSky() {
         ClientWorld world = getWorld();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
@@ -58,11 +82,14 @@ public class TClientEnvironment {
         if (world != null && player != null) {
             return world.isSkyVisible(player.getBlockPos());
         }
-
         return false;
     }
 
-    // Проверяет, является ли текущее время ночью
+    /**
+     * Returns true if the current in-game time is considered nighttime.
+     *
+     * @return true, если игра временно в ночной фазе
+     */
     public static boolean isNight() {
         ClientWorld world = getWorld();
 
@@ -70,7 +97,6 @@ public class TClientEnvironment {
             long timeOfDay = world.getTimeOfDay() % 24000L;
             return timeOfDay >= 13000L && timeOfDay <= 23000L;
         }
-
         return false;
     }
 }
