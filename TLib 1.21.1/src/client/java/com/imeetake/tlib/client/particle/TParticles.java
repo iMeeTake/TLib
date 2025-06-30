@@ -2,8 +2,10 @@ package com.imeetake.tlib.client.particle;
 
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
@@ -30,6 +32,25 @@ public class TParticles {
         return type;
     }
 
+    @FunctionalInterface
+    public interface OrientedParticleFactory<T extends ParticleEffect> {
+        TOrientedParticle<T> create(ClientWorld world,
+                                    double x, double y, double z,
+                                    double velocityX, double velocityY, double velocityZ,
+                                    SpriteProvider spriteProvider);
+    }
+    public static <T extends ParticleEffect> void registerOriented(
+            ParticleType<T> type,
+            OrientedParticleFactory<T> factory
+    ) {
+        ParticleFactoryRegistry.getInstance().register(type, spriteProvider ->
+                (parameters, world, x, y, z, dx, dy, dz) ->
+                        factory.create(world, x, y, z, dx, dy, dz, spriteProvider)
+        );
+    }
+
+
+
     /**
      * Registers a custom particle factory using a factory function that accepts a SpriteProvider.
      *
@@ -40,7 +61,6 @@ public class TParticles {
     public static <T extends ParticleEffect> void register(ParticleType<T> type, Function<SpriteProvider, ParticleFactory<T>> factoryFunction) {
         ParticleFactoryRegistry.getInstance().register(type, factoryFunction::apply);
     }
-
     /**
      * Registers a simple factory using a particle creator (constructor-based).
      *
