@@ -1,4 +1,4 @@
-package com.imeetake.tlib.client.core;
+package com.imeetake.tlib.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,4 +1,4 @@
-package com.imeetake.tlib.client.core;
+package com.imeetake.tlib.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

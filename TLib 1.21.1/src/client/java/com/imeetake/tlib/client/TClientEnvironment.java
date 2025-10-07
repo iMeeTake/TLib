@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 
 /**
@@ -99,4 +100,27 @@ public class TClientEnvironment {
         }
         return false;
     }
+
+    public static boolean isColdBiome(RegistryEntry<Biome> entry, BlockPos pos) {
+        if (entry == null) return false;
+        Biome b = entry.value();
+        try {
+            return b.getPrecipitation(pos) == Biome.Precipitation.SNOW
+                    || b.getTemperature() <= 0.15f;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    public static boolean isAridBiome(RegistryEntry<Biome> entry, BlockPos pos) {
+        if (entry == null) return false;
+        Biome b = entry.value();
+        try {
+            return b.getPrecipitation(pos) == Biome.Precipitation.NONE;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+
 }
